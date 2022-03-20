@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'com.github.miyohide'
@@ -7,6 +7,10 @@ version '1.0'
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = 'com.github.miyohide.azureblobwithenc.Main'
 }
 
 dependencies {
