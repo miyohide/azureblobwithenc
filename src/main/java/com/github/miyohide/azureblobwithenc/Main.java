@@ -18,8 +18,7 @@ public class Main {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         // Blobへの接続クライアントを作成する
         BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
-                .endpoint(System.getenv("BLOB_ENDPOINT"))
-                .sasToken(System.getenv("BLOB_SAS_TOKEN"))
+                .connectionString(System.getenv("BLOB_CONNECTION_STRING"))
                 .buildClient();
 
         // Blobコンテナーのクライアントを作成する
