@@ -17,14 +17,18 @@ import java.util.Collections;
 import java.util.Map;
 
 public class Main {
+    public Main() {
+    }
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
         Logger logger = LoggerFactory.getLogger("com.github.miyohide.azureblobwithenc");
         logger.info("********** Start Application **********");
-        createBlob();
+        Main m = new Main();
+        m.createBlob();
         logger.info("********** End Application **********");
     }
 
-    private static void createBlob() throws NoSuchAlgorithmException {
+    private void createBlob() throws NoSuchAlgorithmException {
         // Blobへの接続クライアントを作成する
         BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
                 .connectionString(System.getenv("BLOB_CONNECTION_STRING"))
