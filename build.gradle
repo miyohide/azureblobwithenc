@@ -15,7 +15,7 @@ application {
 }
 
 dependencies {
-    implementation platform('com.azure:azure-sdk-bom:1.1.1')
+    implementation platform('com.azure:azure-sdk-bom:1.2.0')
     implementation 'com.azure:azure-storage-blob'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
