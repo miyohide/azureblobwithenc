@@ -21,7 +21,7 @@ public class BlobHelper {
     public BlobHelper() {
     }
 
-    public void createBlobServiceClient(String connectionString) {
+    public void createBlobServiceClientWithConnectionString(String connectionString) {
         // blobに接続するためのクライアントを作成する
         this.blobServiceClient = new BlobServiceClientBuilder()
                 .connectionString(connectionString)
