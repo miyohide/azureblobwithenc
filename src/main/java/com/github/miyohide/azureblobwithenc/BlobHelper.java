@@ -1,5 +1,6 @@
 package com.github.miyohide.azureblobwithenc;
 
+import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
@@ -25,6 +26,13 @@ public class BlobHelper {
         // blobに接続するためのクライアントを作成する
         this.blobServiceClient = new BlobServiceClientBuilder()
                 .connectionString(connectionString)
+                .buildClient();
+    }
+
+    public void createBlobServiceClientWithAzureID(String storageAccountURL) {
+        this.blobServiceClient = new BlobServiceClientBuilder()
+                .endpoint(storageAccountURL)
+                .credential(new DefaultAzureCredentialBuilder().build())
                 .buildClient();
     }
 
