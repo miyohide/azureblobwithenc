@@ -19,8 +19,9 @@ public class Main {
 
     private void createBlob() throws NoSuchAlgorithmException {
         BlobHelper blobHelper = new BlobHelper();
-        blobHelper.createBlobServiceClientWithConnectionString(System.getenv("BLOB_CONNECTION_STRING"));
+        //blobHelper.createBlobServiceClientWithConnectionString(System.getenv("BLOB_CONNECTION_STRING"));
+        blobHelper.createBlobServiceClientWithAzureID(System.getenv("STORAGE_ENDPOINT_URL"));
         blobHelper.createBlobContainerClient(System.getenv("CONTAINER_NAME"));
-        blobHelper.createBlobWithData("myblob", "This is a blob contents");
+        blobHelper.createBlobWithData("myblob2.txt", "This is a blob contents2");
     }
 }
