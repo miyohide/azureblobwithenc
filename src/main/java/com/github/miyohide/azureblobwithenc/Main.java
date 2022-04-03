@@ -1,5 +1,6 @@
 package com.github.miyohide.azureblobwithenc;
 
+import com.azure.security.keyvault.keys.models.KeyVaultKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,10 @@ public class Main {
         logger.info("********** Start Application **********");
         Main m = new Main();
         m.createBlob();
+        KeyVaultHelper keyVaultHelper = new KeyVaultHelper();
+        keyVaultHelper.createKeyVaultClient("miyohidekeyvault");
+        KeyVaultKey keyVaultKey = keyVaultHelper.getKeyVaultKey("testkey1");
+        logger.info("----- [" + keyVaultKey.getId() + "] -----");
         logger.info("********** End Application **********");
     }
 
