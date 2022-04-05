@@ -19,6 +19,7 @@ dependencies {
     implementation 'com.azure:azure-storage-blob'
     implementation 'com.azure:azure-security-keyvault-keys'
     implementation 'com.azure:azure-identity'
+    implementation 'com.azure:azure-storage-blob-cryptography'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
