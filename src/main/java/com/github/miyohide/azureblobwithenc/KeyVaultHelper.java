@@ -1,8 +1,10 @@
 package com.github.miyohide.azureblobwithenc;
 
+import com.azure.core.cryptography.AsyncKeyEncryptionKey;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.security.keyvault.keys.KeyClient;
 import com.azure.security.keyvault.keys.KeyClientBuilder;
+import com.azure.security.keyvault.keys.cryptography.KeyEncryptionKeyClientBuilder;
 import com.azure.security.keyvault.keys.models.KeyVaultKey;
 
 public class KeyVaultHelper {
@@ -24,5 +26,14 @@ public class KeyVaultHelper {
 
     public KeyVaultKey getKeyVaultKey(String keyName) {
         return this.keyClient.getKey(keyName);
+    }
+
+    public AsyncKeyEncryptionKey createAsyncKeyEncryptionKey(String keyName) {
+        KeyVaultKey key = this.getKeyVaultKey(keyName);
+        AsyncKeyEncryptionKey asyncKeyEncryptionKey = new KeyEncryptionKeyClientBuilder()
+                .credential(new DefaultAzureCredentialBuilder().build())
+                .buildAsyncKeyEncryptionKey(key.getId())
+                .block();
+        return asyncKeyEncryptionKey;
     }
 }
