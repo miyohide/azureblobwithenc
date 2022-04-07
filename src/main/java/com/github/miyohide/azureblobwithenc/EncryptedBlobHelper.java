@@ -16,12 +16,12 @@ public class EncryptedBlobHelper {
         this.encryptedBlobClient = null;
     }
 
-    public void createEncryptedBlobClient(String keyvaultName, String keyName, String keyWrapAlgorithm, String storageAccountURL, String containerName, String blobName) {
+    public void createEncryptedBlobClient(KeyVaultInfo keyVaultInfo, String storageAccountURL, String containerName, String blobName) {
         this.keyVaultHelper = new KeyVaultHelper();
-        this.keyVaultHelper.createKeyVaultClient(keyvaultName);
+        this.keyVaultHelper.createKeyVaultClient(keyVaultInfo.getKeyVaultName());
 
         this.encryptedBlobClient = new EncryptedBlobClientBuilder()
-                .key(this.keyVaultHelper.createAsyncKeyEncryptionKey(keyName), keyWrapAlgorithm)
+                .key(this.keyVaultHelper.createAsyncKeyEncryptionKey(keyVaultInfo.getKeyName()), keyVaultInfo.getKeyWrapAlgorithm())
                 .credential(new DefaultAzureCredentialBuilder().build())
                 .endpoint(storageAccountURL)
                 .containerName(containerName)
