@@ -1,6 +1,7 @@
 package com.github.miyohide.azureblobwithenc;
 
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm;
 import com.azure.security.keyvault.keys.models.KeyVaultKey;
 import com.azure.storage.blob.specialized.BlockBlobClient;
 import com.azure.storage.blob.specialized.cryptography.EncryptedBlobClient;
@@ -37,14 +38,15 @@ public class Main {
         KeyVaultInfo keyVaultInfo = new KeyVaultInfo(
                 System.getenv("KEY_VAULT_NAME"),
                 System.getenv("KEY_NAME"),
-                "RSA-OAEP"
+                KeyWrapAlgorithm.RSA_OAEP.toString()
         );
         EncryptedBlobHelper encryptedBlobHelper = new EncryptedBlobHelper();
         encryptedBlobHelper.createEncryptedBlobClient(
                 keyVaultInfo,
                 System.getenv("STORAGE_ENDPOINT_URL"),
                 "enc",
-                "test4.txt");
+                "test7.txt");
         encryptedBlobHelper.updateStringData("This is a sample string2");
+        encryptedBlobHelper.downloadBlobData("abc.txt");
     }
 }
