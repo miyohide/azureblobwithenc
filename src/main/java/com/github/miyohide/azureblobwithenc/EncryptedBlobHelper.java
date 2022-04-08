@@ -32,4 +32,8 @@ public class EncryptedBlobHelper {
     public void updateStringData(String updateString) {
         this.encryptedBlobClient.upload(new ByteArrayInputStream(updateString.getBytes(StandardCharsets.UTF_8)), updateString.length());
     }
+
+    public void downloadBlobData(String filename) {
+        this.encryptedBlobClient.downloadToFile(filename);
+    }
 }
