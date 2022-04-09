@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public Main() {
@@ -41,12 +43,18 @@ public class Main {
                 KeyWrapAlgorithm.RSA_OAEP.toString()
         );
         EncryptedBlobHelper encryptedBlobHelper = new EncryptedBlobHelper();
+        LocalDateTime now = LocalDateTime.now();
         encryptedBlobHelper.createEncryptedBlobClient(
                 keyVaultInfo,
                 System.getenv("STORAGE_ENDPOINT_URL"),
                 "enc",
-                "test7.txt");
+                "enc_data_" + DateTime2String(now) + ".txt");
         encryptedBlobHelper.updateStringData("This is a sample string2");
-        encryptedBlobHelper.downloadBlobData("abc.txt");
+        encryptedBlobHelper.downloadBlobData("download_file_" + DateTime2String(now) + ".txt");
+    }
+
+    private String DateTime2String(LocalDateTime localDateTime) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+        return dtf.format(localDateTime);
     }
 }
